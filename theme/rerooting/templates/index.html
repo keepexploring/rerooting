@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% set film_page = pages | selectattr('slug', 'equalto', 'the-film') | first %}
+{% set coming = articles | upcoming %}
+{% set been = articles | past %}
+
+{% block bodyclass %}home{% endblock %}
+{% block mastheadclass %} masthead--home{% endblock %}
+
+{% block content %}
+
+  {# ---------------------------------------------------------------- hero #}
+  <section class="hero">
+    <img class="hero__image"
+         src="{{ SITEURL }}/{{ HERO_IMAGE }}"
+         {% if HERO_IMAGE_SMALL %}
+         srcset="{{ SITEURL }}/{{ HERO_IMAGE_SMALL }} 1200w, {{ SITEURL }}/{{ HERO_IMAGE }} 2400w"
+         sizes="100vw"
+         {% endif %}
+         alt="{{ HERO_IMAGE_ALT }}"
+         fetchpriority="high" decoding="async">
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <p class="eyebrow eyebrow--light">{{ HERO_EYEBROW }}</p>
+      <h1 class="display display--xl">{{ HERO_HEADING | accent }}</h1>
+      <p class="hero__body">{{ HERO_BODY }}</p>
+      <p class="hero__actions">
+        <a class="btn btn--paper" href="#trailer">
+          Watch the trailer <span class="arrow arrow--play" aria-hidden="true">▷</span>
+        </a>
+        <a class="link-underline link-underline--light" href="#screenings">
+          Come to a screening <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  {# ------------------------------------------------- next screening bar #}
+  {% if coming %}
+    {{ m.screening_bar(coming[0], SITEURL) }}
+  {% endif %}
+
+  {# --------------------------------------------------------------- about #}
+  <section class="about">
+    <div class="about__inner">
+      <div class="about__head">
+        <p class="eyebrow">{{ ABOUT_EYEBROW }}</p>
+        <h2 class="display display--lg">{{ ABOUT_HEADING | accent }}</h2>
+      </div>
+      <div class="about__body">
+        {% if film_page %}
+          <p class="lede">{{ film_page.summary | striptags }}</p>
+          <div class="prose">{{ film_page.content | intro }}</div>
+          <p>
+            <a class="link-underline" href="{{ SITEURL }}/{{ film_page.url }}">
+              More about the film <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+    {% if ABOUT_IMAGE %}
+      <figure class="about__figure">
+        <img src="{{ SITEURL }}/{{ ABOUT_IMAGE }}" alt="{{ ABOUT_IMAGE_ALT }}"
+             loading="lazy" decoding="async">
+      </figure>
+    {% endif %}
+  </section>
+
+  {# ------------------------------------------------------------- trailer #}
+  <section class="trailer-section" id="trailer">
+    <div class="trailer-section__inner">
+      <p class="eyebrow">{{ TRAILER_EYEBROW }}</p>
+      <h2 class="display display--lg">{{ TRAILER_HEADING | accent }}</h2>
+      {{ m.trailer(TRAILER_YOUTUBE_ID, TRAILER_TITLE, TRAILER_POSTER, SITEURL) }}
+    </div>
+  </section>
+
+  {# ---------------------------------------------------------- screenings #}
+  <section class="screenings" id="screenings">
+    <div class="screenings__inner">
+      <p class="eyebrow">{{ SCREENINGS_EYEBROW }}</p>
+      <h2 class="display display--lg">{{ SCREENINGS_HEADING | accent }}</h2>
+
+      {% if coming %}
+        <ul class="screening-list">
+          {% for article in coming %}
+            {{ m.screening_card(article, SITEURL) }}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="lede screenings__empty">{{ SCREENINGS_EMPTY }}</p>
+      {% endif %}
+
+      <p class="screenings__host">
+        Want to bring Re-Rooting to your community?
+        <a class="link-underline" href="{{ SITEURL }}/contact/">Host a screening
+          <span class="arrow" aria-hidden="true">↗</span></a>
+      </p>
+
+      {% if been %}
+        <details class="past-screenings">
+          <summary>Past screenings ({{ been | length }})</summary>
+          <ul class="screening-list screening-list--past">
+            {% for article in been %}
+              {{ m.screening_card(article, SITEURL, is_past=True) }}
+            {% endfor %}
+          </ul>
+        </details>
+      {% endif %}
+    </div>
+  </section>
+
+  {# -------------------------------------------------------------- signup #}
+  {% include "partials/signup.html" %}
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}{{ article.title }} — {{ article.city | default(SITENAME) }} — {{ SITENAME }}{% endblock %}
+{% block description %}
+  {{ article.standfirst | default(SITEDESCRIPTION, true) }}
+{%- endblock %}
+{% block ogtype %}article{% endblock %}
+{% block canonical %}{{ article.url }}{% endblock %}
+{% block bodyclass %}inner{% endblock %}
+
+{% block content %}
+  <article class="sheet">
+    <header class="sheet__head">
+      <p class="eyebrow">
+        Screening{% if article.city is defined %} · {{ article.city }}{% endif %}
+      </p>
+      <h1 class="display display--lg">{{ article.title }}</h1>
+      {% if article.standfirst is defined %}
+        <p class="lede">{{ article.standfirst }}</p>
+      {% endif %}
+    </header>
+
+    <dl class="factbox">
+      <div>
+        <dt>When</dt>
+        <dd>
+          <time datetime="{{ article.date.isoformat() }}">
+            {{ article.date.strftime('%A %-d %B %Y') }},
+            {{ article.date.strftime('%-I.%M%p')|lower|replace('.00', '') }}
+          </time>
+        </dd>
+      </div>
+      {% if article.venue is defined %}
+        <div>
+          <dt>Where</dt>
+          <dd>
+            {{ article.venue }}
+            {%- if article.address is defined %}<br><span class="factbox__sub">{{ article.address }}</span>{% endif %}
+          </dd>
+        </div>
+      {% endif %}
+      {% if article.eventbrite is defined %}
+        <div>
+          <dt>Tickets</dt>
+          <dd>
+            <a class="btn btn--solid" href="{{ article.eventbrite }}" rel="noopener">
+              {{ article.cta | default('Book on Eventbrite') }}
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+
+    <div class="prose">
+      {{ article.content }}
+    </div>
+
+    <p class="sheet__back">
+      <a class="link-underline" href="{{ SITEURL }}/#screenings">All screenings</a>
+    </p>
+  </article>
+
+  {% include "partials/signup.html" %}
+{% endblock %}

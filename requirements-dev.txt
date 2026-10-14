@@ -1,0 +1,4 @@
+# Tooling for pulling still frames out of the trailer (see scripts/extract-frames.sh).
+# Kept separate from requirements.txt so the site build stays lean.
+yt-dlp>=2025.1.1
+imageio-ffmpeg>=0.5.1

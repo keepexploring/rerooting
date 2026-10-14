@@ -1,0 +1,95 @@
+{# Reusable building blocks shared by the homepage and the inner pages. #}
+
+{# The sage bar directly under the hero, showing the next screening. #}
+{% macro screening_bar(article, siteurl) %}
+  <aside class="screening-bar">
+    <div class="screening-bar__inner">
+      <p class="screening-bar__date">
+        <span class="screening-bar__day">{{ article.date.strftime('%-d') }}</span>
+        <span class="screening-bar__month">{{ article.date.strftime('%B %Y') }}</span>
+      </p>
+      <div class="screening-bar__body">
+        <p class="eyebrow">Next screening{% if article.city is defined %} · {{ article.city }}{% endif %}</p>
+        <h2 class="screening-bar__title">
+          <a href="{{ siteurl }}/{{ article.url }}">{{ article.title }}</a>
+        </h2>
+        <p class="screening-bar__detail">
+          {{ article.date.strftime('%A %-d %B') }} ·
+          {{ article.date.strftime('%-I.%M%p')|lower|replace('.00', '') }}
+          {%- if article.venue is defined %} · {{ article.venue }}{% endif %}
+        </p>
+        {% if article.standfirst is defined %}
+          <p class="screening-bar__detail">{{ article.standfirst }}</p>
+        {% endif %}
+      </div>
+      {% if article.eventbrite is defined %}
+        <a class="btn btn--solid screening-bar__cta"
+           href="{{ article.eventbrite }}"
+           rel="noopener">
+          {{ article.cta | default('Reserve your seat') }} <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      {% endif %}
+    </div>
+  </aside>
+{% endmacro %}
+
+{# A single screening in the listing further down the page. #}
+{% macro screening_card(article, siteurl, is_past=False) %}
+  <li class="screening{% if is_past %} screening--past{% endif %}">
+    <p class="screening__date">
+      <span class="screening__day">{{ article.date.strftime('%-d') }}</span>
+      <span class="screening__month">{{ article.date.strftime('%b %Y') }}</span>
+    </p>
+    <div class="screening__body">
+      <h3 class="screening__title">
+        <a href="{{ siteurl }}/{{ article.url }}">{{ article.title }}</a>
+      </h3>
+      <p class="screening__detail">
+        {%- if article.venue is defined %}{{ article.venue }}{% endif %}
+        {%- if article.city is defined %}, {{ article.city }}{% endif %}
+        {%- if not is_past %} · {{ article.date.strftime('%-I.%M%p')|lower|replace('.00', '') }}{% endif %}
+      </p>
+      {% if article.standfirst is defined and not is_past %}
+        <p class="screening__standfirst">{{ article.standfirst }}</p>
+      {% endif %}
+    </div>
+    <div class="screening__action">
+      {% if is_past %}
+        <span class="screening__badge">Past</span>
+      {% elif article.eventbrite is defined %}
+        <a class="btn btn--solid" href="{{ article.eventbrite }}" rel="noopener">
+          {{ article.cta | default('Book tickets') }} <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      {% else %}
+        <a class="link-underline" href="{{ siteurl }}/{{ article.url }}">Details</a>
+      {% endif %}
+    </div>
+  </li>
+{% endmacro %}
+
+{# Click-to-load YouTube. Nothing is requested from YouTube until the visitor
+   presses play, which keeps the page fast and avoids third-party cookies. #}
+{% macro trailer(youtube_id, title, poster, siteurl) %}
+  <div class="trailer">
+    <button class="trailer__facade"
+            type="button"
+            data-youtube-id="{{ youtube_id }}"
+            data-title="{{ title }}"
+            {% if poster %}style="background-image:url('{{ siteurl }}/{{ poster }}')"{% endif %}
+            aria-label="Play the trailer">
+      <span class="trailer__play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34" focusable="false">
+          <path d="M8 5.5v13l11-6.5z" fill="none" stroke="currentColor" stroke-width="1.4"
+                stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="trailer__label">Play the trailer</span>
+    </button>
+  </div>
+  <p class="trailer__note">
+    Playing loads YouTube.
+    <a class="link-underline" href="https://www.youtube.com/watch?v={{ youtube_id }}" rel="noopener">
+      Watch on YouTube <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+  </p>
+{% endmacro %}
