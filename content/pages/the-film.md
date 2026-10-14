@@ -4,8 +4,8 @@ Sortorder: 1
 Summary: Join us as we tour the UK and overseas with screenings of a new independent documentary, exploring pilgrimage, community and creation.
 
 Re-Rooting explores the Christian's relationship with creation by following a
-1,000 mile cycle journey undertaken by two friends —  Tze-Hung and Joel Chaney
-Seeto — from Holy Island in England to Orkney, an archipelago off the north
+1,000 mile cycle journey undertaken by two friends — Tze-Hung Seeto and Joel
+Chaney — from Holy Island in England to Orkney, an archipelago off the north
 coast of Scotland.
 
 Following ancient and new pilgrim routes, the journey connects the stories of
