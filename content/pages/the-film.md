@@ -4,7 +4,7 @@ Sortorder: 1
 Summary: Join us as we tour the UK and overseas with screenings of a new independent documentary, exploring pilgrimage, community and creation.
 
 Re-Rooting explores the Christian's relationship with creation by following a
-1,000 mile cycle journey undertaken by two friends — Joel Chaney and Tze-Hung
+1,000 mile cycle journey undertaken by two friends —  Tze-Hung and Joel Chaney
 Seeto — from Holy Island in England to Orkney, an archipelago off the north
 coast of Scotland.
 
@@ -46,13 +46,13 @@ least.
 
 ## Who made it
 
-**Joel Chaney** is an innovator and co-founder of CREATIVenergie, a charitable
-company that exists to unlock sustainable energy for abundant life.
-
 **Tze-Hung Seeto** is a documentary photographer and filmmaker who has been
 living and working around the world since 2008. His work focusses on the broad
 themes of world Christianity, creation care and the experience of war and
 conflict, and he runs Wildris Media.
+
+**Joel Chaney** is an innovator and co-founder of CREATIVenergie, a charitable
+company that exists to unlock sustainable energy for abundant life.
 
 ## Bringing it to your community
 
