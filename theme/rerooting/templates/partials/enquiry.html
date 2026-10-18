@@ -60,10 +60,32 @@
                 {% if not WEB3FORMS_KEY %}disabled{% endif %}></textarea>
     </div>
 
+    {# Unticked boxes are simply absent from the email Web3Forms sends, so a
+       missing line means "no". Keep the values readable -- they are what you
+       will actually see in your inbox. #}
+    <fieldset class="opt-ins">
+      <legend class="opt-ins__legend">Would you like us to keep you posted?</legend>
+
+      <label class="consent">
+        <input type="checkbox" name="Updates: new screenings" value="Yes please">
+        <span>Tell me when a screening is announced near me.</span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" name="Updates: new content" value="Yes please">
+        <span>Tell me when there's new content — films, writing, resources.</span>
+      </label>
+    </fieldset>
+
     {# Web3Forms' spam trap: real people never tick this. #}
     <div class="hp" aria-hidden="true">
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
     </div>
+
+    {% if HCAPTCHA_ENABLED %}
+      {# Rendered by the Web3Forms script below -- no keys of our own needed. #}
+      <div class="h-captcha" data-captcha="true"></div>
+    {% endif %}
 
     <button class="btn btn--solid" type="submit"
             {% if not WEB3FORMS_KEY %}disabled{% endif %}>
@@ -90,3 +112,8 @@
     </p>
   {% endif %}
 </section>
+
+{% if HCAPTCHA_ENABLED %}
+  {# The only third-party script on the site, and only on this page. #}
+  <script src="https://web3forms.com/client/script.js" async defer></script>
+{% endif %}

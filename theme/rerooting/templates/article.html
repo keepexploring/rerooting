@@ -62,5 +62,5 @@
     </p>
   </article>
 
-  {% include "partials/signup.html" %}
+  {% if SIGNUP_ENABLED %}{% include "partials/signup.html" %}{% endif %}
 {% endblock %}

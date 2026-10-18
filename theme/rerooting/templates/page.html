@@ -25,6 +25,6 @@
   </article>
 
   {% if page.slug != 'thank-you' %}
-    {% include "partials/signup.html" %}
+    {% if SIGNUP_ENABLED %}{% include "partials/signup.html" %}{% endif %}
   {% endif %}
 {% endblock %}

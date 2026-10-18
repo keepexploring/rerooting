@@ -71,6 +71,30 @@
     slot.replaceChildren(button);
   });
 
+  /* ------------------------------------------------- enquiry captcha -- */
+  /* Web3Forms rejects a submission with no captcha token, and the rejection
+     is a bare JSON error page. Catch it here instead and say so in place. */
+  var enquiry = document.querySelector(".enquiry__form");
+
+  if (enquiry && enquiry.querySelector(".h-captcha")) {
+    enquiry.addEventListener("submit", function (event) {
+      var token = enquiry.querySelector('textarea[name="h-captcha-response"]');
+      var existing = enquiry.querySelector(".form-error");
+
+      if (existing) existing.remove();
+
+      if (!token || !token.value) {
+        event.preventDefault();
+        var message = document.createElement("p");
+        message.className = "form-error";
+        message.setAttribute("role", "alert");
+        message.textContent =
+          "Please tick the box below to show you're not a robot.";
+        enquiry.querySelector(".h-captcha").insertAdjacentElement("afterend", message);
+      }
+    });
+  }
+
   /* ------------------------------------------------- signup niceties -- */
   /* Brevo handles the real validation server-side; this just gives people
      an immediate, readable message instead of only the browser default. */

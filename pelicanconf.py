@@ -76,6 +76,11 @@ TRAILER_TITLE = "Re-Rooting — official trailer"
 #
 # While this is empty the signup form renders in a clearly-labelled
 # "not connected yet" state instead of silently losing people's addresses.
+# Set to True to bring the mailing-list signup back. It is parked for now so
+# the site has one clear way to make contact rather than two competing ones.
+# The Brevo form below still works -- nothing was deleted at their end.
+SIGNUP_ENABLED = False
+
 BREVO_FORM_ACTION = "https://367f0c4e.sibforms.com/serve/MUIFAAA6D0SLIZQ9U0XhiclaJGoZ2EdShJWdUOdXxox6-1Ie4WBQhYJ8lOG8p82fkPQrfcIU2CRlCYN_ZH5K2flvFuz1jvmxxX7ttksUVygRMUVHNKsLcoi92h3gb3IyDViZX6ABws82kGi4ZPtR8N-y94YjZSiKbG-VBlXBqpMl_2egGqT4d1kJsuQjwJLL7n8woimdOR4La0-G"
 
 # The enquiry form on the Contact page goes through Web3Forms instead, which
@@ -86,6 +91,15 @@ WEB3FORMS_KEY = "4eba7c12-720c-4fd9-a4ee-e86ba1d01979"
 
 # Where people land after sending. Must be a page that exists in content/pages.
 ENQUIRY_SUCCESS_URL = "message-sent/"
+
+# hCaptcha on the contact form. This must match the Captcha Protection setting
+# in the Web3Forms dashboard: if it is set to hCaptcha there and False here,
+# every submission is rejected.
+#
+# Note this is the one place the site loads third-party JavaScript (from
+# web3forms.com and hcaptcha.com), and the form stops working for anyone with
+# JavaScript off. Set to False if the Advanced Spam Filter proves enough.
+HCAPTCHA_ENABLED = True
 
 ENQUIRY_HEADING = "Send us *a message.*"
 ENQUIRY_BODY = (
@@ -98,7 +112,11 @@ ENQUIRY_BODY = (
 BREVO_SUCCESS_URL = "thank-you/"
 BREVO_LOCALE = "en"
 
-CONTACT_EMAIL = "hello@rerooting.org"
+# The "or email us directly" line under the contact form. Left empty until
+# hello@rerooting.org actually exists (a Google Workspace domain alias) --
+# an address that bounces is worse than no address. Put it back here and the
+# click-to-reveal link returns on its own.
+CONTACT_EMAIL = ""
 
 # Production credit, shown in the footer of every page. Each is (label, url).
 FILM_BY = ("Wildris Media", "https://www.wildrismedia.com")
