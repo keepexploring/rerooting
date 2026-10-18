@@ -46,13 +46,17 @@ least.
 
 ## Who made it
 
+A film by [Wildris Media](https://www.wildrismedia.com) in partnership with
+[CREATIVenergie](https://creativenergie.co.uk).
+
 **Tze-Hung Seeto** is a documentary photographer and filmmaker who has been
 living and working around the world since 2008. His work focusses on the broad
 themes of world Christianity, creation care and the experience of war and
-conflict, and he runs Wildris Media.
+conflict, and he runs [Wildris Media](https://www.wildrismedia.com).
 
-**Joel Chaney** is an innovator and co-founder of CREATIVenergie, a charitable
-company that exists to unlock sustainable energy for abundant life.
+**Joel Chaney** is an innovator and co-founder of
+[CREATIVenergie](https://creativenergie.co.uk), a charitable company that
+exists to unlock sustainable energy for abundant life.
 
 ## Bringing it to your community
 

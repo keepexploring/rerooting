@@ -78,10 +78,14 @@ TRAILER_TITLE = "Re-Rooting — official trailer"
 # "not connected yet" state instead of silently losing people's addresses.
 BREVO_FORM_ACTION = "https://367f0c4e.sibforms.com/serve/MUIFAAA6D0SLIZQ9U0XhiclaJGoZ2EdShJWdUOdXxox6-1Ie4WBQhYJ8lOG8p82fkPQrfcIU2CRlCYN_ZH5K2flvFuz1jvmxxX7ttksUVygRMUVHNKsLcoi92h3gb3IyDViZX6ABws82kGi4ZPtR8N-y94YjZSiKbG-VBlXBqpMl_2egGqT4d1kJsuQjwJLL7n8woimdOR4La0-G"
 
-# The enquiry form on the Contact page. A second, separate Brevo form — make it
-# the same way, but add FIRSTNAME and a multi-line MESSAGE attribute alongside
-# EMAIL so people can actually tell you what they want.
-BREVO_ENQUIRY_ACTION = ""
+# The enquiry form on the Contact page goes through Web3Forms instead, which
+# emails each message to the address the key was created for. Get a key at
+# https://web3forms.com — no account needed, they email it to you. It is meant
+# to live in public HTML, so it is safe to commit.
+WEB3FORMS_KEY = "4eba7c12-720c-4fd9-a4ee-e86ba1d01979"
+
+# Where people land after sending. Must be a page that exists in content/pages.
+ENQUIRY_SUCCESS_URL = "message-sent/"
 
 ENQUIRY_HEADING = "Send us *a message.*"
 ENQUIRY_BODY = (
@@ -95,6 +99,10 @@ BREVO_SUCCESS_URL = "thank-you/"
 BREVO_LOCALE = "en"
 
 CONTACT_EMAIL = "hello@rerooting.org"
+
+# Production credit, shown in the footer of every page. Each is (label, url).
+FILM_BY = ("Wildris Media", "https://www.wildrismedia.com")
+FILM_PARTNER = ("CREATIVenergie", "https://creativenergie.co.uk")
 
 # Footer photo credits. Replace once all imagery comes from the film.
 PHOTO_CREDITS = [

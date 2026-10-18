@@ -62,6 +62,14 @@
         <a class="footer__contact" href="{{ SITEURL }}/contact/">Contact us</a>
       </div>
       <div class="footer__meta">
+        {% if FILM_BY %}
+          <p class="footer__makers">
+            A film by <a href="{{ FILM_BY[1] }}">{{ FILM_BY[0] }}</a>
+            {%- if FILM_PARTNER %}
+              in partnership with <a href="{{ FILM_PARTNER[1] }}">{{ FILM_PARTNER[0] }}</a>
+            {%- endif %}
+          </p>
+        {% endif %}
         <p class="footer__tagline">{{ FOOTER_TAGLINE }}</p>
         <p class="footer__credits">
           {% for label, url in PHOTO_CREDITS %}

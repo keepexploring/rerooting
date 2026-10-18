@@ -1,7 +1,10 @@
-{# Enquiry form. Posts straight to Brevo, so there is no backend to run.
+{# Enquiry form. Posts straight to Web3Forms, which emails each submission to
+   whichever address the access key was created for, with Reply-To set to the
+   sender. No backend, no account to log into, nothing stored on their side --
+   your inbox is the record.
 
-   Until BREVO_ENQUIRY_ACTION is set in pelicanconf.py the form renders
-   disabled with a visible notice, rather than silently losing messages.
+   Until WEB3FORMS_KEY is set in pelicanconf.py the form renders disabled with
+   a visible notice, rather than silently losing messages.
 
    The email address underneath is split into its two halves here and only
    joined back together by site.js in the browser, so the full address never
@@ -12,61 +15,66 @@
 
   <form class="enquiry__form"
         method="POST"
-        {% if BREVO_ENQUIRY_ACTION %}action="{{ BREVO_ENQUIRY_ACTION }}"{% endif %}
-        {% if not BREVO_ENQUIRY_ACTION %}data-unconfigured="true"{% endif %}>
+        {% if WEB3FORMS_KEY %}action="https://api.web3forms.com/submit"{% endif %}
+        {% if not WEB3FORMS_KEY %}data-unconfigured="true"{% endif %}>
+
+    <input type="hidden" name="access_key" value="{{ WEB3FORMS_KEY }}">
+    <input type="hidden" name="subject" value="New enquiry from {{ SITENAME }}">
+    <input type="hidden" name="from_name" value="{{ SITENAME }} website">
+    {# Where people land after sending. Needs to be absolute, so it only works
+       in the production build; locally the form posts but the redirect won't
+       resolve. #}
+    <input type="hidden" name="redirect" value="{{ SITEURL }}/{{ ENQUIRY_SUCCESS_URL }}">
 
     <div class="field">
-      <label class="field__label" for="FIRSTNAME">Your name</label>
+      <label class="field__label" for="name">Your name</label>
       <input class="field__input"
              type="text"
-             id="FIRSTNAME"
-             name="FIRSTNAME"
+             id="name"
+             name="name"
              autocomplete="name"
              required
-             {% if not BREVO_ENQUIRY_ACTION %}disabled{% endif %}>
+             {% if not WEB3FORMS_KEY %}disabled{% endif %}>
     </div>
 
     <div class="field">
-      <label class="field__label" for="ENQUIRY_EMAIL">Your email address</label>
+      <label class="field__label" for="enquiry-email">Your email address</label>
       <input class="field__input"
              type="email"
-             id="ENQUIRY_EMAIL"
-             name="EMAIL"
+             id="enquiry-email"
+             name="email"
              placeholder="you@example.com"
              autocomplete="email"
              required
-             {% if not BREVO_ENQUIRY_ACTION %}disabled{% endif %}>
+             {% if not WEB3FORMS_KEY %}disabled{% endif %}>
     </div>
 
     <div class="field">
-      <label class="field__label" for="MESSAGE">Your message</label>
+      <label class="field__label" for="message">Your message</label>
       <textarea class="field__input"
-                id="MESSAGE"
-                name="MESSAGE"
+                id="message"
+                name="message"
                 rows="6"
                 placeholder="Where you are, the kind of group you have in mind, and roughly when."
                 required
-                {% if not BREVO_ENQUIRY_ACTION %}disabled{% endif %}></textarea>
+                {% if not WEB3FORMS_KEY %}disabled{% endif %}></textarea>
     </div>
 
-    {# Brevo's spam trap: real people never fill this in. #}
+    {# Web3Forms' spam trap: real people never tick this. #}
     <div class="hp" aria-hidden="true">
-      <input type="text" name="email_address_check" value=""
-             tabindex="-1" autocomplete="off">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
     </div>
-    <input type="hidden" name="locale" value="{{ BREVO_LOCALE }}">
-    <input type="hidden" name="html_type" value="simple">
 
     <button class="btn btn--solid" type="submit"
-            {% if not BREVO_ENQUIRY_ACTION %}disabled{% endif %}>
+            {% if not WEB3FORMS_KEY %}disabled{% endif %}>
       Send your message <span class="arrow" aria-hidden="true">↗</span>
     </button>
 
-    {% if not BREVO_ENQUIRY_ACTION %}
+    {% if not WEB3FORMS_KEY %}
       <p class="notice">
-        <strong>Not connected yet.</strong> Add your Brevo form URL to
-        <code>BREVO_ENQUIRY_ACTION</code> in <code>pelicanconf.py</code> and
-        this form goes live. Until then please use the address below.
+        <strong>Not connected yet.</strong> Add your Web3Forms access key to
+        <code>WEB3FORMS_KEY</code> in <code>pelicanconf.py</code> and this form
+        goes live. Until then please use the address below.
       </p>
     {% endif %}
   </form>
