@@ -118,9 +118,16 @@ BREVO_LOCALE = "en"
 # click-to-reveal link returns on its own.
 CONTACT_EMAIL = ""
 
-# Production credit, shown in the footer of every page. Each is (label, url).
+# Production credit, given its own band above the footer on every page.
+CREDIT_EYEBROW = "An independent film by"
 FILM_BY = ("Wildris Media", "https://www.wildrismedia.com")
 FILM_PARTNER = ("CREATIVenergie", "https://creativenergie.co.uk")
+
+# Drop logo files into content/images/ and name them here to use artwork in
+# place of the names above. SVG or a transparent PNG works best, since the
+# band is cream rather than white. Leave empty to show the names as type.
+FILM_BY_LOGO = ""
+FILM_PARTNER_LOGO = ""
 
 # Footer photo credits. Replace once all imagery comes from the film.
 PHOTO_CREDITS = [

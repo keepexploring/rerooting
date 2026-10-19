@@ -16,11 +16,21 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css">
   <link rel="canonical" href="{{ SITEURL }}/{% block canonical %}{% endblock %}">
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
+  {# Printers' crop marks in the margin, as on the tour poster. Decorative
+     only, hidden from assistive tech and dropped on narrow screens where
+     there is no margin to put them in. #}
+  <div class="crop-marks" aria-hidden="true">
+    <span class="crop-marks__tl"></span>
+    <span class="crop-marks__tr"></span>
+    <span class="crop-marks__bl"></span>
+    <span class="crop-marks__br"></span>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="masthead{% block mastheadclass %}{% endblock %}">
@@ -55,6 +65,8 @@
     {% block content %}{% endblock %}
   </main>
 
+  {% include "partials/credit.html" %}
+
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
@@ -62,14 +74,6 @@
         <a class="footer__contact" href="{{ SITEURL }}/contact/">Contact us</a>
       </div>
       <div class="footer__meta">
-        {% if FILM_BY %}
-          <p class="footer__makers">
-            A film by <a href="{{ FILM_BY[1] }}">{{ FILM_BY[0] }}</a>
-            {%- if FILM_PARTNER %}
-              in partnership with <a href="{{ FILM_PARTNER[1] }}">{{ FILM_PARTNER[0] }}</a>
-            {%- endif %}
-          </p>
-        {% endif %}
         <p class="footer__tagline">{{ FOOTER_TAGLINE }}</p>
         <p class="footer__credits">
           {% for label, url in PHOTO_CREDITS %}

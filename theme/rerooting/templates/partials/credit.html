@@ -1,0 +1,39 @@
+{# The production credit, given its own band above the footer so it is not
+   buried in the small print.
+
+   Set FILM_BY_LOGO / FILM_PARTNER_LOGO in pelicanconf.py to a path under
+   content/images/ and the logo is used in place of the name; leave them empty
+   and it falls back to the name set in type. #}
+<section class="credit">
+  <div class="credit__inner">
+    <p class="eyebrow">{{ CREDIT_EYEBROW }}</p>
+
+    <div class="credit__parties">
+      {% if FILM_BY %}
+        <a class="credit__party" href="{{ FILM_BY[1] }}">
+          {% if FILM_BY_LOGO %}
+            <img class="credit__logo" src="{{ SITEURL }}/{{ FILM_BY_LOGO }}"
+                 alt="{{ FILM_BY[0] }}" loading="lazy" decoding="async">
+          {% else %}
+            <span class="credit__name">{{ FILM_BY[0] }}</span>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if FILM_BY and FILM_PARTNER %}
+        <span class="credit__join">in partnership with</span>
+      {% endif %}
+
+      {% if FILM_PARTNER %}
+        <a class="credit__party" href="{{ FILM_PARTNER[1] }}">
+          {% if FILM_PARTNER_LOGO %}
+            <img class="credit__logo" src="{{ SITEURL }}/{{ FILM_PARTNER_LOGO }}"
+                 alt="{{ FILM_PARTNER[0] }}" loading="lazy" decoding="async">
+          {% else %}
+            <span class="credit__name">{{ FILM_PARTNER[0] }}</span>
+          {% endif %}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
