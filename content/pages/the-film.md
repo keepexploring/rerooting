@@ -1,6 +1,7 @@
 Title: The film
 Slug: the-film
 Sortorder: 1
+Gallery: yes
 Summary: Join us as we tour the UK and overseas with screenings of a new independent documentary, exploring pilgrimage, community and creation.
 
 Re-Rooting explores the Christian's relationship with creation by following a

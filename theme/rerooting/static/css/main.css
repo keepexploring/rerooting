@@ -748,6 +748,51 @@ textarea.field__input {
   color: var(--red-deep);
 }
 
+/* ------------------------------------------------------------- gallery -- */
+/* Cinematic 2.35:1 frames, so one per row on a phone and two from tablet up.
+   The first image spans both columns: it earns the space and it stops the
+   grid reading as a uniform contact sheet. */
+
+.gallery { padding-block: var(--section-y); }
+
+/* The heading keeps the page measure; the photographs do not. They run the
+   full width of the window, one under another, like plates in a book. */
+.gallery__inner {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.gallery__heading { margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+  width: 100vw;
+  margin-left: 50%;
+  translate: -50% 0;
+}
+
+.gallery__item {
+  margin: 0;
+  overflow: hidden;
+  background: var(--sage);
+}
+
+/* Cropped a little tighter than the native 2.35:1 so a full-bleed frame does
+   not eat the whole screen on a wide monitor. */
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1275 / 480;
+}
+
+@media (max-width: 700px) {
+  .gallery__item img { aspect-ratio: 1275 / 620; }
+}
+
 /* ------------------------------------------------------ production credit -- */
 
 .credit {

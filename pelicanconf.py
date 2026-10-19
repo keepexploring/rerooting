@@ -45,48 +45,13 @@ ABOUT_IMAGE_ALT = "A woman and a dog walking two ponies down a croft track, hous
 SCREENINGS_EYEBROW = "Where to see it"
 SCREENINGS_HEADING = "Screenings & *gatherings.*"
 SCREENINGS_EMPTY = (
-    "Nothing in the diary at the moment. Leave your email below and we’ll "
-    "tell you when the next one is booked."
+    "Nothing in the diary at the moment. Get in touch and we’ll tell you when "
+    "the next one is booked."
 )
 
-SIGNUP_EYEBROW = "Keep in touch"
-SIGNUP_HEADING = "Hear about the *next screening.*"
-SIGNUP_BODY = (
-    "An email now and then: where the film is showing next, and what comes "
-    "out of the conversations afterwards."
-)
-SIGNUP_CONSENT = (
-    "Yes, email me about screenings and news from Re-Rooting."
-)
-SIGNUP_IMAGE = "images/signup.jpg"
-SIGNUP_IMAGE_ALT = "An aerial view of a single-track road threading between Hebridean lochans"
-
-FOOTER_TAGLINE = "Filmed on the road between Holy Island and Orkney."
-
-# The YouTube ID of the trailer. Just the ID, not the full URL.
-TRAILER_YOUTUBE_ID = "q0MAijKW7ZQ"
-TRAILER_TITLE = "Re-Rooting — official trailer"
-
-# Brevo mailing list.
-#
-# In Brevo: Contacts -> Forms -> create a form -> Share -> "Simple HTML"
-# (the no-JavaScript variant). Copy the <form action="..."> URL it gives you
-# and paste it below. It looks like:
-#   https://1a2b3c4d.sibforms.com/serve/MUIFAJ...long-id...
-#
-# While this is empty the signup form renders in a clearly-labelled
-# "not connected yet" state instead of silently losing people's addresses.
-# Set to True to bring the mailing-list signup back. It is parked for now so
-# the site has one clear way to make contact rather than two competing ones.
-# The Brevo form below still works -- nothing was deleted at their end.
-SIGNUP_ENABLED = False
-
-BREVO_FORM_ACTION = "https://367f0c4e.sibforms.com/serve/MUIFAAA6D0SLIZQ9U0XhiclaJGoZ2EdShJWdUOdXxox6-1Ie4WBQhYJ8lOG8p82fkPQrfcIU2CRlCYN_ZH5K2flvFuz1jvmxxX7ttksUVygRMUVHNKsLcoi92h3gb3IyDViZX6ABws82kGi4ZPtR8N-y94YjZSiKbG-VBlXBqpMl_2egGqT4d1kJsuQjwJLL7n8woimdOR4La0-G"
-
-# The enquiry form on the Contact page goes through Web3Forms instead, which
-# emails each message to the address the key was created for. Get a key at
-# https://web3forms.com — no account needed, they email it to you. It is meant
-# to live in public HTML, so it is safe to commit.
+# The enquiry form on the Contact page. Web3Forms emails each message to the
+# address the key was created for; nothing is stored on their side. Get a key
+# at https://web3forms.com — it is meant to live in public HTML.
 WEB3FORMS_KEY = "4eba7c12-720c-4fd9-a4ee-e86ba1d01979"
 
 # Where people land after sending. Must be a page that exists in content/pages.
@@ -96,9 +61,9 @@ ENQUIRY_SUCCESS_URL = "message-sent/"
 # in the Web3Forms dashboard: if it is set to hCaptcha there and False here,
 # every submission is rejected.
 #
-# Note this is the one place the site loads third-party JavaScript (from
-# web3forms.com and hcaptcha.com), and the form stops working for anyone with
-# JavaScript off. Set to False if the Advanced Spam Filter proves enough.
+# Note this is the one place the site loads third-party JavaScript, and the
+# form stops working for anyone with JavaScript off. Set to False if the
+# Advanced Spam Filter proves enough on its own.
 HCAPTCHA_ENABLED = True
 
 ENQUIRY_HEADING = "Send us *a message.*"
@@ -107,16 +72,29 @@ ENQUIRY_BODY = (
     "take it from there."
 )
 
-# Where Brevo should send people after a successful / failed submission.
-# Leave as-is to use the thank-you page included in this site.
-BREVO_SUCCESS_URL = "thank-you/"
-BREVO_LOCALE = "en"
-
-# The "or email us directly" line under the contact form. Left empty until
-# hello@rerooting.org actually exists (a Google Workspace domain alias) --
-# an address that bounces is worse than no address. Put it back here and the
-# click-to-reveal link returns on its own.
+# The "or email us directly" line under the form. Left empty until
+# hello@rerooting.org actually exists — an address that bounces is worse than
+# no address. Put it back and the click-to-reveal link returns on its own.
 CONTACT_EMAIL = ""
+
+# Gallery. Stills from the ride, taken from the slide deck. Each entry is
+# (filename under content/images/gallery/, alt text). The homepage shows the
+# first GALLERY_HOME_COUNT of these; the film page shows them all.
+GALLERY_EYEBROW = "A thousand miles"
+GALLERY_HEADING = "Pictures from *the road.*"
+GALLERY_HOME_COUNT = 6
+GALLERY = [
+    ("causeway-sands", "A lone rider on the causeway, with tidal sands stretching away on either side"),
+    ("glen-climb", "Two loaded bikes on a stony path winding up a Highland glen"),
+    ("croft-ruins", "Looking straight down on two roofless stone croft houses, the riders inside"),
+    ("lochan-road", "A single-track road threading between lochans across open moor"),
+    ("beach-camp", "Two tents pitched above a beach at dusk, surf breaking beyond"),
+    ("forest-track", "Two riders on a track through dense forestry"),
+    ("loch-and-sheep", "Riding a road beside a sea loch, a line of sheep on the shore"),
+    ("dusk-castle", "Riding into the dusk past a castle, a red rear light on the road"),
+    ("pitching-camp", "Pitching a tent on the grass in the last of the light"),
+    ("track-from-above", "A track seen from directly above, cutting between moss and forestry"),
+]
 
 # Production credit, given its own band above the footer on every page.
 CREDIT_EYEBROW = "An independent film by"
@@ -151,6 +129,10 @@ THEME = "theme/rerooting"
 
 # Header navigation. (label, path) — path is relative to the site root,
 # with no leading slash, so it keeps working in local relative-URL builds.
+# The button at the right of the header. (label, path) — while the mailing
+# list is parked this points at the contact page rather than the signup.
+NAV_CTA = ("Continue the conversation", "contact/")
+
 MENUITEMS = [
     ("The film", "the-film/"),
     ("Screenings", "#screenings"),

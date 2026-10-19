@@ -7,6 +7,13 @@ Summary: Host a screening, ask a question, or just say hello.
 Do write. Whether you want to put on a screening, ask something about the film,
 or tell us what's happening where you are, the form below reaches us.
 
+The hope is that the film is a beginning rather than a finished thing. The
+vision is for a blog, a podcast, resources for groups, a four-week course,
+perhaps even another journey: ways of carrying the conversation on after the
+credits. We're not promising any of it yet. Tick the boxes at the bottom of
+the form and we'll let you know if and when it takes shape, or when a
+screening is announced near you.
+
 ## Hosting a screening
 
 We can send you the film, a short introduction to read out, and some questions

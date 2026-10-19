@@ -24,7 +24,9 @@
     {% endif %}
   </article>
 
-  {% if page.slug != 'thank-you' %}
-    {% if SIGNUP_ENABLED %}{% include "partials/signup.html" %}{% endif %}
+  {# Any page with `Gallery: yes` gets the full set of stills. #}
+  {% if page.gallery %}
+    {% include "partials/gallery.html" %}
   {% endif %}
+
 {% endblock %}

@@ -112,7 +112,9 @@
     </div>
   </section>
 
-  {# -------------------------------------------------------------- signup #}
-  {% if SIGNUP_ENABLED %}{% include "partials/signup.html" %}{% endif %}
+  {# ------------------------------------------------------------- gallery #}
+  {% with gallery_items = GALLERY[:GALLERY_HOME_COUNT] %}
+    {% include "partials/gallery.html" %}
+  {% endwith %}
 
 {% endblock %}

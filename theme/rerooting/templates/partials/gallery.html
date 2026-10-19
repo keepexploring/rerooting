@@ -1,0 +1,29 @@
+{# Stills from the ride.
+
+   `gallery_items` is set by the including template: the homepage passes a
+   short selection, the film page passes the lot. Falls back to everything if
+   a template forgets to set it.
+
+   No lightbox and no JavaScript: the images are a mood, not a slideshow. #}
+{% set items = gallery_items | default(GALLERY, true) %}
+{% if items %}
+  <section class="gallery" id="gallery">
+    <div class="gallery__inner">
+      {% if GALLERY_EYEBROW %}<p class="eyebrow">{{ GALLERY_EYEBROW }}</p>{% endif %}
+      {% if GALLERY_HEADING %}
+        <h2 class="display display--md gallery__heading">{{ GALLERY_HEADING | accent }}</h2>
+      {% endif %}
+
+      <div class="gallery__grid">
+        {% for name, alt in items %}
+          <figure class="gallery__item">
+            <img src="{{ SITEURL }}/images/gallery/{{ name }}.jpg"
+                 alt="{{ alt }}"
+                 width="1275" height="541"
+                 loading="lazy" decoding="async">
+          </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

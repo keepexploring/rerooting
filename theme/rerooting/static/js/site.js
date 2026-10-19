@@ -95,28 +95,4 @@
     });
   }
 
-  /* ------------------------------------------------- signup niceties -- */
-  /* Brevo handles the real validation server-side; this just gives people
-     an immediate, readable message instead of only the browser default. */
-  var form = document.querySelector(".signup__form");
-
-  if (form && !form.hasAttribute("data-unconfigured")) {
-    form.addEventListener("submit", function (event) {
-      var consent = form.querySelector('input[name="OPT_IN"]');
-      var existing = form.querySelector(".form-error");
-
-      if (existing) existing.remove();
-
-      if (consent && !consent.checked) {
-        event.preventDefault();
-        var message = document.createElement("p");
-        message.className = "form-error";
-        message.setAttribute("role", "alert");
-        message.textContent =
-          "Please tick the box to confirm you'd like to hear from us.";
-        consent.insertAdjacentElement("afterend", message);
-        consent.focus();
-      }
-    });
-  }
 })();
