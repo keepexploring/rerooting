@@ -28,8 +28,10 @@ HERO_IMAGE = "images/hero.jpg"
 HERO_IMAGE_SMALL = "images/hero-1200.jpg"
 HERO_IMAGE_ALT = "A road winding through a steep Highland glen under heavy cloud"
 
-# Social sharing card (1200x630).
+# Social sharing card. Must be 1200x630 — those dimensions are declared in the
+# page head, and WhatsApp will not render a preview if they disagree.
 OG_IMAGE = "images/og.jpg"
+OG_IMAGE_ALT = "A road winding through a steep Highland glen under heavy cloud"
 
 # The "the film is a beginning" section. Prose lives in content/pages/the-film.md.
 ABOUT_EYEBROW = "The question behind the film"
