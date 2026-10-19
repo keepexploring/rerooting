@@ -72,10 +72,6 @@ ENQUIRY_BODY = (
     "take it from there."
 )
 
-# The "or email us directly" line under the form. Left empty until
-# hello@rerooting.org actually exists — an address that bounces is worse than
-# no address. Put it back and the click-to-reveal link returns on its own.
-CONTACT_EMAIL = ""
 
 # Gallery. Stills from the ride, taken from the slide deck. Each entry is
 # (filename under content/images/gallery/, alt text). The homepage shows the

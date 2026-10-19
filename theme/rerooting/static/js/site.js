@@ -39,38 +39,6 @@
     });
   }
 
-  /* ------------------------------------------------ email addresses --- */
-  /* The address is never written into the HTML as one string: the page ships
-     the local part and the domain in separate attributes, and they are only
-     joined together here, in the browser, when someone asks for it. Harvesters
-     that scrape the raw HTML (most of them) find nothing to take. Without
-     JavaScript the <noscript> fallback inside the span still tells a human how
-     to reach us. */
-  var slots = document.querySelectorAll("[data-email-user][data-email-domain]");
-
-  Array.prototype.forEach.call(slots, function (slot) {
-    var address =
-      slot.getAttribute("data-email-user") +
-      String.fromCharCode(64) +
-      slot.getAttribute("data-email-domain");
-
-    var button = document.createElement("button");
-    button.type = "button";
-    button.className = "email-reveal";
-    button.textContent = slot.getAttribute("data-email-label") || "Show email address";
-
-    button.addEventListener("click", function () {
-      var link = document.createElement("a");
-      link.href = "mailto:" + address;
-      link.className = "email-address";
-      link.textContent = address;
-      slot.replaceChildren(link);
-      link.focus();
-    });
-
-    slot.replaceChildren(button);
-  });
-
   /* ------------------------------------------------- enquiry captcha -- */
   /* Web3Forms rejects a submission with no captcha token, and the rejection
      is a bare JSON error page. Catch it here instead and say so in place. */

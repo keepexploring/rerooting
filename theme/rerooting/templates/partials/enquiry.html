@@ -5,10 +5,7 @@
 
    Until WEB3FORMS_KEY is set in pelicanconf.py the form renders disabled with
    a visible notice, rather than silently losing messages.
-
-   The email address underneath is split into its two halves here and only
-   joined back together by site.js in the browser, so the full address never
-   appears in the HTML that a harvester downloads. #}
+ #}
 <section class="enquiry" id="enquiry">
   <h2 class="display display--md">{{ ENQUIRY_HEADING | accent }}</h2>
   {% if ENQUIRY_BODY %}<p class="lede">{{ ENQUIRY_BODY }}</p>{% endif %}
@@ -96,21 +93,11 @@
       <p class="notice">
         <strong>Not connected yet.</strong> Add your Web3Forms access key to
         <code>WEB3FORMS_KEY</code> in <code>pelicanconf.py</code> and this form
-        goes live. Until then please use the address below.
+        goes live. Nothing is collected until then.
       </p>
     {% endif %}
   </form>
 
-  {% if CONTACT_EMAIL and '@' in CONTACT_EMAIL %}
-    {% set local = CONTACT_EMAIL.split('@')[0] %}
-    {% set domain = CONTACT_EMAIL.split('@')[1] %}
-    <p class="enquiry__alt">Or email us directly:
-      <span class="email-slot"
-            data-email-user="{{ local }}"
-            data-email-domain="{{ domain }}"
-            data-email-label="Show email address"><noscript>{{ local }} <em>at</em> {{ domain }}</noscript></span>
-    </p>
-  {% endif %}
 </section>
 
 {% if HCAPTCHA_ENABLED %}
