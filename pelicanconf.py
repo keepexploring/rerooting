@@ -51,6 +51,13 @@ SCREENINGS_EMPTY = (
     "the next one is booked."
 )
 
+FOOTER_TAGLINE = "Filmed on the road between Holy Island and Orkney."
+
+# The YouTube ID of the trailer. Just the ID, not the full URL — the player is
+# only loaded once someone presses play, so nothing reaches YouTube before then.
+TRAILER_YOUTUBE_ID = "q0MAijKW7ZQ"
+TRAILER_TITLE = "Re-Rooting — official trailer"
+
 # The enquiry form on the Contact page. Web3Forms emails each message to the
 # address the key was created for; nothing is stored on their side. Get a key
 # at https://web3forms.com — it is meant to live in public HTML.
